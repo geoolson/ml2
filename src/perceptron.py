@@ -46,7 +46,7 @@ def errors(targets, outputs):
     return np.multiply( np.subtract(targets, outputs), derivative )
 
 def deltaWeights(learnRate, errors, inputs):
-    return np.multiply( learnRate, np.multiply(errors, inputs) )
+    return np.multiply( learnRate, np.outer(errors, inputs) )
 
 
 if __name__ == '__main__':
@@ -72,6 +72,7 @@ if __name__ == '__main__':
     print("errors")
     outputErrors = errors(targets[trainingData[0][0]], outputLayer)
     print(outputErrors)
+    print("delta weights")
     delta = deltaWeights( .1, outputErrors, outputLayer)
     print(delta)
     
